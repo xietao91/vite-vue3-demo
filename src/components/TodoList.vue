@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onMounted, computed, nextTick } from "vue";
-import vFocus from "../directives/vFocus";
+// import vFocus from "../directives/vFocus";
 
 const inputContent = ref("");
+// const editInput = ref();
 let todoList = ref([]);
 let allTodoList = ref([]);
 
@@ -12,7 +13,6 @@ onMounted(() => {
 
 const undoNum = computed(() => {
   return todoList.value.filter((todo) => !todo.done).length;
-  // return 0
 });
 
 const initTodoList = () => {
@@ -47,11 +47,22 @@ const enterHandler = () => {
 
 const editTodo = (index) => {
   console.log(index);
-  todoList[index].isEdit = true;
+  todoList.value[index].isEdit = true;
+  // nextTick(() => {
+  //   if (editInput) {
+  //     editInput.focus();
+  //   }
+  // });
+};
+
+const editInput = (editInput) => {
+  if (editInput) {
+    editInput.focus();
+  }
 };
 
 const finishEdit = (index) => {
-  todoList[index].isEdit = false;
+  todoList.value[index].isEdit = false;
 };
 
 const deleteTodo = (index, key) => {
@@ -83,17 +94,15 @@ const clearFinished = () => {
 
 const changeDoneState = (done, key) => {
   allTodoList.value.find((todo) => todo.key === key).done = done;
-  nextTick(() => {
-    localStorage.setItem("todoList", JSON.stringify(todoList.value));
-    localStorage.setItem("allTodoList", JSON.stringify(allTodoList.value));
-  });
+  localStorage.setItem("todoList", JSON.stringify(todoList.value));
+  localStorage.setItem("allTodoList", JSON.stringify(allTodoList.value));
 };
 </script>
 
 <template>
   <div class="container">
     <h3>todoList</h3>
-    <input
+    <a-input
       type="text"
       placeholder="请输入"
       v-model="inputContent"
@@ -101,27 +110,25 @@ const changeDoneState = (done, key) => {
     />
     <div class="todo-container">
       <div class="todo" v-for="(todo, index) in todoList" :key="todo.key">
-        <span>
-          <input
-            type="checkbox"
+        <span style="display: flex; align-items: center">
+          <a-checkbox
             v-model="todo.done"
             @change="changeDoneState(todo.done, todo.key)"
+            style="margin-right: 12px"
           />
           <span v-if="!todo.isEdit" @dblclick="editTodo(index)" class="content"
             >{{ index + 1 }}. {{ todo.content }}</span
           >
-          <input
-            v-focus
+          <a-input
+            :ref="editInput"
+            style="display: inline-block"
             type="text"
             v-else
             v-model="todo.content"
             @blur="finishEdit(index)"
           />
         </span>
-        <!-- <button @click="deleteTodo(index, todo.key)">删除</button> -->
-        <a-space>
-          <a-button @click="deleteTodo(index, todo.key)">删除</a-button>
-        </a-space>
+        <a-button @click="deleteTodo(index, todo.key)">删除</a-button>
       </div>
     </div>
     <div class="operate-container">
@@ -138,7 +145,7 @@ const changeDoneState = (done, key) => {
 .container {
   width: 400px;
   margin: 0 auto;
-  > input {
+  > a-input {
     width: 100%;
   }
   .todo-container {
