@@ -1,9 +1,7 @@
 <script setup>
-import { ref, onMounted, computed, nextTick } from "vue";
-// import vFocus from "../directives/vFocus";
+import { ref, onMounted, computed } from "vue";
 
 const inputContent = ref("");
-// const editInput = ref();
 let todoList = ref([]);
 let allTodoList = ref([]);
 
@@ -48,11 +46,6 @@ const enterHandler = () => {
 const editTodo = (index) => {
   console.log(index);
   todoList.value[index].isEdit = true;
-  // nextTick(() => {
-  //   if (editInput) {
-  //     editInput.focus();
-  //   }
-  // });
 };
 
 const editInput = (editInput) => {
@@ -128,7 +121,7 @@ const changeDoneState = (done, key) => {
             @blur="finishEdit(index)"
           />
         </span>
-        <a-button @click="deleteTodo(index, todo.key)">删除</a-button>
+        <a-button size="mini" type="primary" @click="deleteTodo(index, todo.key)">删除</a-button>
       </div>
     </div>
     <div class="operate-container">
