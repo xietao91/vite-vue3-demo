@@ -13,7 +13,8 @@
     </a>
   </div> -->
   <!-- <HelloWorld msg="Vite + Vue" /> -->
-  <TodoList />
+  <!-- <TodoList /> -->
+  <router-view></router-view>
 </template>
 
 <style scoped>
