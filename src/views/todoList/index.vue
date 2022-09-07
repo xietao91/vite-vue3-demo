@@ -1,3 +1,3 @@
 <template>
-  <todo-list></todo-list>
+  <TodoList />
 </template>

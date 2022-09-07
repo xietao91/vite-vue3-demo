@@ -1,16 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
+const views = import.meta.glob('../views/**/*.vue')
+console.log(views);
+
 const routes = [
     {
-        path: '/',
-        name: '',
+        path: '/todoList',
+        name: 'TodoList',
         component: ()=> import('@/views/todoList/index.vue')
     },
-    // {
-    //     path: '/threeJs',
-    //     name: 'ThreeJs',
-    //     component: () => import('../App.vue')
-    // }
+    {
+        path: '/threeJsDemo',
+        name: 'ThreeJsDemo',
+        component: () => import('@/views/threeJsDemo/index.vue')
+    }
 ]
 
 export default createRouter({
