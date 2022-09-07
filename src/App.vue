@@ -14,7 +14,8 @@
   </div> -->
   <!-- <HelloWorld msg="Vite + Vue" /> -->
   <!-- <TodoList /> -->
-  <router-view></router-view>
+  <router-view>
+  </router-view>
 </template>
 
 <style scoped>

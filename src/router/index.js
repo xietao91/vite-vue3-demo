@@ -1,11 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import todoList from '../views/todoList/index.vue'
 
 const routes = [
     {
         path: '/',
         name: '',
-        component: todoList
+        component: ()=> import('@/views/todoList/index.vue')
     },
     // {
     //     path: '/threeJs',
