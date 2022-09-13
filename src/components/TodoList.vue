@@ -1,5 +1,4 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
 
 const inputContent = ref("");
 let todoList = ref([]);
@@ -103,7 +102,7 @@ const changeDoneState = (done, key) => {
     />
     <div class="todo-container">
       <div class="todo" v-for="(todo, index) in todoList" :key="todo.key">
-        <span style="display: flex; align-items: center">
+        <span style="display: flex; align-items: center;height: 32px;">
           <a-checkbox
             v-model="todo.done"
             @change="changeDoneState(todo.done, todo.key)"

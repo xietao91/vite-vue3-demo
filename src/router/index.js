@@ -1,9 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-const views = import.meta.glob('../views/**/*.vue')
+const views = import.meta.glob('@/views/**/*.vue')
 console.log(views);
 
 const routes = [
+    {
+        path:'/',
+        redirect:'/todoList'
+    },
     {
         path: '/todoList',
         name: 'TodoList',
