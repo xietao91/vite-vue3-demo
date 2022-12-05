@@ -5,13 +5,13 @@ console.log(views);
 
 const routes = [
     {
-        path:'/',
-        redirect:'/todoList'
+        path: '/',
+        redirect: '/todoList'
     },
     {
         path: '/todoList',
         name: 'TodoList',
-        component: ()=> import('@/views/todoList/index.vue')
+        component: () => import('@/views/todoList/index.vue')
     },
     {
         path: '/threeJsDemo',
@@ -22,6 +22,11 @@ const routes = [
         path: '/test',
         name: 'Test',
         component: () => import('@/views/test/index.vue')
+    },
+    {
+        path: '/eCharts',
+        name: 'ECharts',
+        component: () => import('@/views/eChartsDemos/index.vue')
     }
 ]
 
