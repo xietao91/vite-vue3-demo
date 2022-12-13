@@ -30,7 +30,7 @@ const enterHandler = () => {
     const key = `${inputContent.value}${Date.now()}`;
     const todo = {
       content,
-      done: ref(false),
+      done: false,
       key,
       isEdit: ref(false),
     };
