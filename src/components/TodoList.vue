@@ -93,7 +93,7 @@ const changeDoneState = (done, key) => {
 
 <template>
   <div class="container">
-    <h3>todoList</h3>
+    <h3 class="animate__animated animate__bounceInLeft animate__slow">todoList</h3>
     <a-input
       type="text"
       placeholder="请输入"
